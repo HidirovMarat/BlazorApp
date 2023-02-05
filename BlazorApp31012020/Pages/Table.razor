@@ -1,0 +1,113 @@
+﻿@page "/table"
+
+
+@using BlazorApp.MyCode
+@* Иньекция внедрение уже инициализированного экземпляра класса ControlDB *@
+@inject ControlDB controlDB
+
+@{
+    // Место кода веб страницы, перегружает при каждом запросе
+
+    int count = 1;
+}
+
+
+
+<header class="mb-5 text-center">
+    <h1 class="text-center mb-0 pb-0">Работа с сервером в реальном времени</h1>
+    <p class="lead mx-auto" style="max-width:800px;">Приложения Blazor Server в режиме реального времени</p>
+</header>
+
+
+
+@if (tvs == null)
+{
+
+
+}
+else
+{
+<div class="table-responsive">
+    <table class="table table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>н/п</th>
+                <th>Марка</th>
+                <th>Модель</th>
+                <th>Диагональ экрана</th>
+                <th>Год изготовления</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tv in tvs.ListTVs)
+            {
+            <tr>
+                <td>
+                    @(count++)
+                </td>
+                <td style="padding:1px;">
+                    <input @bind-value="@tv.Brand" @bind-value:event="onchange" @onfocusout="() => WriteToDB()" class="rounded-0 border-0 form-control" type="text">
+                </td>
+                <td style="padding:1px;">
+                    <input @bind-value="@tv.Model" @bind-value:event="onchange" @onfocusout="() => WriteToDB()" class="rounded-0 border-0 form-control" type="text">
+                </td>
+                <td style="padding:1px;">
+                    <input @bind-value="@tv.Diagonal" @bind-value:event="onchange" @onfocusout="() => WriteToDB()" class="rounded-0 border-0 form-control" type="text">
+                </td>
+                <td style="padding:1px;">
+                    <input @bind-value="@tv.ProductionYear" @bind-value:event="onchange" @onfocusout="() => WriteToDB()" class="rounded-0 border-0 form-control" type="text">
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" @onclick="() => RemoveTV(tv)"><span class="oi oi-delete" aria-hidden="false"></span></button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="mt-3">
+    <button class="btn btn-primary" @onclick="() => AddTV()">Добавить</button>
+</div>
+}
+
+
+@code {
+
+    // Код компонента
+
+    private Models.TVs tvs = new Models.TVs();
+
+
+
+    private async void WriteToDB()
+    {
+        await controlDB.WriteToDB();
+    }
+
+    private async void AddTV()
+    {
+        await controlDB.AddTV();
+    } 
+
+    private async void RemoveTV(Models.TV tv)
+    {
+        await controlDB.RemoveTV(tv);
+    }
+
+
+    private async Task ReadFromDB()
+    {
+        tvs = await controlDB.ReadFromDB();
+
+    }
+
+
+    // Асинхронная инициализация таблицы при загрузке данной страницы
+    protected override async Task OnInitializedAsync()
+    {
+        await ReadFromDB();
+    }
+
+
+}

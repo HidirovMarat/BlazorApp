@@ -1,0 +1,34 @@
+{
+  "ListTVs": [
+    {
+      "Diagonal": 52,
+      "ProductionYear": 2000,
+      "Brand": "Рубин",
+      "Model": "Рубин-567В"
+    },
+    {
+      "Diagonal": 565,
+      "ProductionYear": 45,
+      "Brand": "Марка телевизора",
+      "Model": "нен"
+    },
+    {
+      "Diagonal": 76767,
+      "ProductionYear": 0,
+      "Brand": "343545",
+      "Model": "5454"
+    },
+    {
+      "Diagonal": 556,
+      "ProductionYear": 0,
+      "Brand": "Марка телевизора",
+      "Model": "33"
+    },
+    {
+      "Diagonal": 0,
+      "ProductionYear": 0,
+      "Brand": "Маркyuyu",
+      "Model": ""
+    }
+  ]
+}
