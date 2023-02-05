@@ -4,11 +4,14 @@
 *******
 ## Демонстрация/Скриншот
 Главная страница
+<image src="https://i.postimg.cc/FHk37VWH/image.png" alt="Главная страница">
 
-![База данных](https://i.postimg.cc/nLnfS0Qd/image.png)
+База данных
+<image src="https://i.postimg.cc/nLnfS0Qd/image.png" alt="База данных">
+
 *****
 ## Особенности
 - SignalR для работы в режиме реального времени
 - Технология Blazor строго поддерживает веб стандарты.
 - Нет никаких плагинов и дополнительных надстроек для браузеров.
-## GitHub Pages
+
